@@ -5,6 +5,8 @@
 #include <stdlib.h>
 
 #define CITY_SIZE 100
+#define CYCLE_SIZE 10
+#define MUTATION_SIZE 3
 
 typedef struct
 {
@@ -19,11 +21,21 @@ typedef struct
     int size;
 } Map;
 
+typedef struct 
+{
+   Map path[CYCLE_SIZE];
+   int size;
+} MapList;
+
 /**
  * @brief Initialize the array of cities
  *
  * @return Map* The pointer to the array of cities
  */
 Map *init_map();
+
+int add_map_to_list(MapList *list, Map map);
+
+MapList * init_map_list();
 
 #endif // CITY_H

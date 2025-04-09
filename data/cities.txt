@@ -6,6 +6,3 @@ Creuse 50 50
 Junk-Junction 44 55
 Tilted-Towers 33 44
 Los-Santos 100 100
-Night-City 10 10
-Le-monde-du-thrône-de-Savathun 10 88
-Nessus 77 44

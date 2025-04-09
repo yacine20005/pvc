@@ -2,7 +2,7 @@
 PROG = pvc
 CC = gcc
 CFLAGS = -Wall -g -Iinc
-LDFLAGS = -lncurses
+LDFLAGS = -lMLV -lm
 
 # Lister tous les fichiers source .c et les fichiers objets .o
 SOURCES = $(wildcard src/*.c) # Utilise le wildcard pour trouver tous les fichiers .c dans le dossier src

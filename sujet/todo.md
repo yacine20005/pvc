@@ -6,37 +6,35 @@ Créer un programme en C nommé pvc qui résout le problème du voyageur de comm
 
 1. Analyse et préparation
 
-- [x] Lire et comprendre la spécification du problème.
-- [x] Étudier les concepts de programmation génétique.
-- [x] Définir les structures de données nécessaires (représentation des villes, cartes, solutions, etc.).
-- [x] Identifier les modules nécessaires pour le projet.
+- [✅] Lire et comprendre la spécification du problème.
+- [✅] Étudier les concepts de programmation génétique.
+- [✅] Définir les structures de données nécessaires (représentation des villes, cartes, solutions, etc.).
+- [✅] Identifier les modules nécessaires pour le projet.
 
 ## Modules à implémenter
 
 ### Lecture et gestion des données
 
-- [x] Module de lecture de fichier :
+- [✅] Module de lecture de fichier :
   - Lire un fichier texte contenant les villes et leurs coordonnées.
   - Valider le format des données.
   - Stocker les données dans une structure adaptée.
-- [x] Module de gestion des villes :
+- [✅] Module de gestion des villes :
   - Représenter une ville (nom, coordonnées).
   - Représenter une carte (ensemble de villes).
 
 ### Calculs et algorithmes
 
-- [ ] Module de calcul des distances :
+- [✅] Module de calcul des distances :
   - Calculer la distance entre deux villes.
   - Calculer la longueur totale d'un chemin donné.
-- [ ] Module de génération initiale :
+- [✅] Module de génération initiale :
   - Générer une population initiale de solutions (chemins aléatoires).
-- [ ] Module de sélection :
-  - Implémenter une méthode de sélection (par exemple, roulette ou tournoi).
-- [ ] Module de croisement (crossover) :
-  - Implémenter un opérateur de croisement pour combiner deux solutions.
-- [ ] Module de mutation :
+- [✅] Module de swap :
+  - Implémenter une fonction qui échange deux groupes de villes dans un chemin.
+- [✅] Module de mutation :
   - Implémenter un opérateur de mutation pour modifier une solution.
-- [ ] Module d'évaluation :
+- [✅] Module d'évaluation :
   - Évaluer la qualité (fitness) d'une solution (longueur du chemin).
 
 ### Gestion du processus génétique
@@ -71,13 +69,6 @@ Créer un programme en C nommé pvc qui résout le problème du voyageur de comm
 - [ ] Ajouter des visualisations (par exemple, tracer les chemins sur un plan).
 - [ ] Optimiser les performances (parallélisation, optimisation des algorithmes).
 - [ ] Permettre des formats d'entrée/sortie supplémentaires.
-
-## Priorités
-
-1. Lecture des données et gestion des villes.
-2. Implémentation des calculs de distances et des algorithmes génétiques.
-3. Tests unitaires et validation.
-4. Documentation et déploiement.
 
 ## Suivi des tâches
 
