@@ -1,5 +1,38 @@
 #include "calc.h"
 
+int max_x_map(Map map){
+    int max_x = map.cities[0].x;
+    for (int i = 1; i < map.size; i++)
+        if (map.cities[i].x > max_x)
+            max_x = map.cities[i].x;
+    return max_x;
+}
+
+int max_y_map(Map map){
+    int max_y = map.cities[0].y;
+    for (int i = 1; i < map.size; i++)
+        if (map.cities[i].y > max_y)
+            max_y = map.cities[i].y;
+    return max_y;
+}
+
+int evolve_list_map(MapList *list)
+{
+    if(list == NULL || list->size == 0)
+        return -1;
+    for (int i = MUTATION_SIZE; i < list->size - MUTATION_SIZE; i++)
+    {
+        list ->path[i] = mutate(list->path[i], list->size);
+    }
+    for(int i = 2* MUTATION_SIZE; i < list->size; i++)
+    {
+        list->path[i] = generate_random_path(list->path[0], list->path[0].size);
+    }
+
+    qsort(list->path, list->size, sizeof(Map), map_comparison);
+    return 0;
+}
+
 float calc_distance(int x1, int y1, int x2, int y2)
 {
     float dx = x2 - x1;
@@ -58,5 +91,5 @@ int map_comparison(const void *a, const void *b)
     Map map_b = *(Map *)b;
     if (map_a.size != map_b.size)
         return -1;
-    return calc_distance_array(map_a) < calc_distance_array(map_b);
+    return calc_distance_array(map_a) > calc_distance_array(map_b);
 }

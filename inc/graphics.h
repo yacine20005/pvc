@@ -2,12 +2,12 @@
 #define GRAPHICS_H
 #include <MLV/MLV_all.h>
 #include "city.h"
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 800
 
-void print_map(Map map);
 
-void print_list_map(MapList lst);
+void MLV_print_world(MapList lst);
 
-void print_map_inline(Map map);
 
 
 #endif // GRAPHICS_H

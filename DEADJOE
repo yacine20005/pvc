@@ -1,0 +1,33 @@
+
+*** These modified files were found in JOE when it aborted on Fri Apr 11 10:35:05 2025
+*** JOE was aborted because the terminal closed
+
+*** Fichier '/home/1inf2/gavaupelissier/Documents/S4/Perf_C/TP10/pvc/.git/COMMIT_EDITMSG'
+
+# Veuillez saisir le message de validation pour vos modifications. Les lignes
+# commençant par '#' seront ignorées, et un message vide abandonne la validation.
+#
+# Validateur : Liam Gavau - - pelissier <gavaupelissier@nomachine.univ-eiffel.fr>
+#
+# Sur la branche main
+# Votre branche est à jour avec 'origin/main'.
+#
+# Modifications qui seront validées :
+#	modifié :         inc/calc.h
+#	modifié :         inc/city.h
+#	modifié :         inc/graphics.h
+#	modifié :         pvc
+#	modifié :         src/calc.c
+#	modifié :         src/graphics.c
+#	modifié :         src/main.c
+#
+²
+*** Fichier '(Sans nom)'
+/home/1inf2/gavaupelissier/Documents/S4/Perf_C/TP10/pvc/.git/COMMIT_EDITMSG
+/home/1inf2/gavaupelissier/Documents/S4/Perf_C/TP10/pvc/.git/COMMIT_EDITMSG
+/home/1inf2/gavaupelissier/Documents/S4/Perf_C/TP10/pvc/.git/COMMIT_EDITMSG
+/home/1inf2/gavaupelissier/Documents/S4/Perf_C/TP10/pvc/.git/COMMIT_EDITMSG
+
+*** Fichier '* Startup Log *'
+Traitement de '/etc/joe/editorrc'...Traitement de '/etc/joe/ftyperc'...Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc

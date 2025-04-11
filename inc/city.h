@@ -5,8 +5,8 @@
 #include <stdlib.h>
 
 #define CITY_SIZE 100
-#define CYCLE_SIZE 10
-#define MUTATION_SIZE 3
+#define CYCLE_SIZE 128
+#define MUTATION_SIZE CYCLE_SIZE / 3
 
 typedef struct
 {
