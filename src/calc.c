@@ -78,7 +78,7 @@ Map swap_cities(Map map, int first_group, int second_group, int size)
 Map mutate(Map map, int size)
 {
     Map mutated_map = map;
-    int length = rand() % size / 2;
+    int length = (rand() % size) / 2;
     int first_group = rand() % (size - length);
     int second_group = first_group + length;
     return swap_cities(mutated_map, first_group, second_group, length);
@@ -90,5 +90,12 @@ int map_comparison(const void *a, const void *b)
     Map map_b = *(Map *)b;
     if (map_a.size != map_b.size)
         return -1;
-    return calc_distance_array(map_a) > calc_distance_array(map_b);
+    float distance_a = calc_distance_array(map_a);
+    float distance_b = calc_distance_array(map_b);
+    if (distance_a < distance_b)
+        return -1;
+    else if (distance_a > distance_b)
+        return 1;
+    else
+        return 0;
 }
