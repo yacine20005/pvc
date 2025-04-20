@@ -28,7 +28,6 @@ int evolve_list_map(MapList *list)
     {
         list->path[i] = generate_random_path(list->path[0], list->path[0].size);
     }
-
     qsort(list->path, list->size, sizeof(Map), map_comparison);
     return 0;
 }

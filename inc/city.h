@@ -34,8 +34,21 @@ typedef struct
  */
 Map *init_map();
 
-int add_map_to_list(MapList *list, Map map);
-
+/**
+ * @brief Initialize the MapList
+ * 
+ * @return MapList* The pointer to the MapList
+ */
 MapList * init_map_list();
+
+/**
+ * @brief Add a map to the list of maps
+ * 
+ * @param map_list The list of maps
+ * @param map The map to add
+ * @return int 0 if success, -1 if failure
+ */
+int add_map_to_list(MapList*, Map);
+
 
 #endif // CITY_H
