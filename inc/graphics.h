@@ -2,8 +2,8 @@
 #define GRAPHICS_H
 #include <MLV/MLV_all.h>
 #include "route.h"
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 800
+#define WINDOW_WIDTH 2600
+#define WINDOW_HEIGHT 1200
 
 /**
  * @brief Displays the route with city names and coordinates in the console

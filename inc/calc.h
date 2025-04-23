@@ -1,7 +1,35 @@
 #ifndef CALC_H
 #define CALC_H
-#include "route.h"
+
+#include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
+
+
+#define CITY_SIZE 100
+#define CYCLE_SIZE 128
+#define MUTATION_SIZE CYCLE_SIZE / 3
+#define BEST_SIZE CYCLE_SIZE / 3
+#define RANDOM_SIZE CYCLE_SIZE / 3
+
+typedef struct
+{
+    char name[50];
+    int x;
+    int y;
+} City;
+
+typedef struct
+{
+    City cities[CITY_SIZE];
+    int size;
+} Route;
+
+typedef struct
+{
+    Route paths[CYCLE_SIZE];
+    int size;
+} RouteCollection;
 
 /**
  * @brief return the maximum x coordinate of a map
@@ -18,6 +46,22 @@ int max_x_map(Route);
  * @return int maximum y coordinate
  */
 int max_y_map(Route);
+
+/**
+ * @brief return the minimum x coordinate of a map
+ *
+ * @param route route full of cities
+ * @return int minimum x coordinate
+ */
+int min_x_map(Route);
+
+/**
+ * @brief return the minimum y coordinate of a map
+ *
+ * @param route route full of cities
+ * @return int minimum y coordinate
+ */
+int min_y_map(Route);
 
 /**
  * @brief Execute one iteration of the genetic algorithm
@@ -78,6 +122,15 @@ Route mutate(Route, int);
  * @param b the second route to compare
  * @return int -1 if a is shorter than b, 1 if a is longer than b, and 0 if equal, -1 if they are different sizes
  */
-int map_comparison(const void *, const void *);
+int route_comparison(const void *, const void *);
+
+/**
+ * @brief To generate a random path
+ *
+ * @param route the route to generate from
+ * @param size the size of the route
+ * @return Route the generated route
+ */
+Route generate_random_path(Route, int);
 
 #endif // CALC_H

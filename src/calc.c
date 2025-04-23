@@ -22,6 +22,24 @@ int max_y_map(Route route)
     return max_y;
 }
 
+int min_x_map(Route route)
+{
+    int min_x = route.cities[0].x;
+    for (int i = 1; i < route.size; i++)
+        if (route.cities[i].x < min_x)
+            min_x = route.cities[i].x;
+    return min_x;
+}
+
+int min_y_map(Route route)
+{
+    int min_y = route.cities[0].y;
+    for (int i = 1; i < route.size; i++)
+        if (route.cities[i].y < min_y)
+            min_y = route.cities[i].y;
+    return min_y;
+}
+
 int genetic_loop(RouteCollection *collection, int nb_mutation, int nb_best, int nb_random)
 {
     if (collection == NULL || collection->size == 0)
@@ -58,7 +76,7 @@ int genetic_loop(RouteCollection *collection, int nb_mutation, int nb_best, int 
     }
 
     // Trier à nouveau la collection selon la longueur des chemins
-    qsort(collection->paths, collection->size, sizeof(Route), map_comparison);
+    qsort(collection->paths, collection->size, sizeof(Route), route_comparison);
 
     return 0;
 }
@@ -103,7 +121,7 @@ Route mutate(Route route, int size)
     return swap_cities(mutated_route, first_group, second_group, length);
 }
 
-int map_comparison(const void *a, const void *b)
+int route_comparison(const void *a, const void *b)
 {
     Route route_a = *(Route *)a;
     Route route_b = *(Route *)b;
@@ -118,3 +136,18 @@ int map_comparison(const void *a, const void *b)
     else
         return 0;
 }
+
+Route generate_random_path(Route route, int size)
+{
+    Route shuffled_route = route;
+    City temp;
+    for (int i = 0; i < size; i++)
+    {
+        int random_index = rand() % size;
+        temp = shuffled_route.cities[i];
+        shuffled_route.cities[i] = shuffled_route.cities[random_index];
+        shuffled_route.cities[random_index] = temp;
+    }
+    return shuffled_route;
+}
+

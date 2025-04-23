@@ -1,27 +1,17 @@
 #include "route.h"
 #include <string.h>
 
-Route *init_route()
+Route init_route()
 {
-    Route *route = (Route *)malloc(sizeof(Route));
-    if (route == NULL)
-    {
-        printf("Error: malloc failed\n");
-        return NULL;
-    }
-    route->size = 0;
+    Route route;
+    route.size = 0;
     return route;
 }
 
-RouteCollection *init_route_collection()
+RouteCollection init_route_collection()
 {
-    RouteCollection *collection = (RouteCollection *)malloc(sizeof(RouteCollection));
-    if (collection == NULL)
-    {
-        printf("Error: malloc failed\n");
-        return NULL;
-    }
-    collection->size = 0;
+    RouteCollection collection;
+    collection.size = 0;
     return collection;
 }
 
@@ -41,25 +31,16 @@ int create_initial_RouteCollection(RouteCollection *collection, Route *cities, i
         return -1;
     for (int i = 0; i < size; i++)
     {    
-        if(add_map_to_list(collection, generate_random_path(*cities, size)) == -1)
+        printf("Creating initial RouteCollection: %d\n", i);
+        if(add_route_to_collection(collection, generate_random_path(*cities, cities->size)) == -1)
         {
             printf("Error: Creation of initial RouteCollection failed\n");
             return -1;
         }
     }
+    qsort(collection->paths, collection->size, sizeof(Route), route_comparison);
     return 0;
 }
 
-Route generate_random_path(Route route, int size)
-{
-    Route shuffled_route = route;
-    City temp;
-    for (int i = 0; i < size; i++)
-    {
-        int random_index = rand() % size;
-        temp = shuffled_route.cities[i];
-        shuffled_route.cities[i] = shuffled_route.cities[random_index];
-        shuffled_route.cities[random_index] = temp;
-    }
-    return shuffled_route;
-}
+
+
