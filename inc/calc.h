@@ -49,13 +49,7 @@ float calc_distance(int, int, int, int);
  */
 float calc_distance_array(Route);
 
-/**
- * @brief Take a populated route and return a shuffled route to create a path
- *
- * @param size the size of the route
- * @return Route with a shuffled path through all the cities
- */
-Route generate_random_path(Route, int);
+
 
 /**
  * @brief Function to swap two group of cities

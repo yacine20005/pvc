@@ -52,4 +52,22 @@ RouteCollection *init_map_list();
  */
 int add_map_to_list(RouteCollection *, Route);
 
+/**
+ * @brief Create the initial RouteCollection with random routes
+ *
+ * @param collection The collection of routes
+ * @param cities The array of cities
+ * @param size The size of the array of cities
+ * @return int 0 if success, -1 if failure
+ */
+int create_initial_RouteCollection(RouteCollection *, Route *, int);
+
+/**
+ * @brief Take a populated route and return a shuffled route to create a path
+ *
+ * @param size the size of the route
+ * @return Route with a shuffled path through all the cities
+ */
+Route generate_random_path(Route, int);
+
 #endif // CITY_H

@@ -82,19 +82,7 @@ float calc_distance_array(Route route)
     return total_distance;
 }
 
-Route generate_random_path(Route route, int size)
-{
-    Route shuffled_route = route;
-    City temp;
-    for (int i = 0; i < size; i++)
-    {
-        int random_index = rand() % size;
-        temp = shuffled_route.cities[i];
-        shuffled_route.cities[i] = shuffled_route.cities[random_index];
-        shuffled_route.cities[random_index] = temp;
-    }
-    return shuffled_route;
-}
+
 
 Route swap_cities(Route route, int first_group, int second_group, int size)
 {
