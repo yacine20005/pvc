@@ -7,6 +7,8 @@
 #define CITY_SIZE 100
 #define CYCLE_SIZE 128
 #define MUTATION_SIZE CYCLE_SIZE / 3
+#define BEST_SIZE CYCLE_SIZE / 3
+#define RANDOM_SIZE CYCLE_SIZE / 3
 
 typedef struct
 {
@@ -19,36 +21,35 @@ typedef struct
 {
     City cities[CITY_SIZE];
     int size;
-} Map;
+} Route; // Renommé de Map à Route pour mieux représenter un parcours
 
-typedef struct 
+typedef struct
 {
-   Map path[CYCLE_SIZE];
-   int size;
-} MapList;
+    Route paths[CYCLE_SIZE]; // Renommé de path à paths et Map à Route
+    int size;
+} RouteCollection; // Renommé de MapList à RouteCollection pour plus de clarté
 
 /**
  * @brief Initialize the array of cities
  *
- * @return Map* The pointer to the array of cities
+ * @return Route* The pointer to the array of cities
  */
-Map *init_map();
+Route *init_map();
 
 /**
- * @brief Initialize the MapList
- * 
- * @return MapList* The pointer to the MapList
+ * @brief Initialize the RouteCollection
+ *
+ * @return RouteCollection* The pointer to the RouteCollection
  */
-MapList * init_map_list();
+RouteCollection *init_map_list();
 
 /**
- * @brief Add a map to the list of maps
- * 
- * @param map_list The list of maps
- * @param map The map to add
+ * @brief Add a route to the collection of routes
+ *
+ * @param route_collection The collection of routes
+ * @param route The route to add
  * @return int 0 if success, -1 if failure
  */
-int add_map_to_list(MapList*, Map);
-
+int add_map_to_list(RouteCollection *, Route);
 
 #endif // CITY_H

@@ -6,31 +6,29 @@
 /**
  * @brief return the maximum x coordinate of a map
  *
- * @param map map full of cities
+ * @param route route full of cities
  * @return int maximum x coordinate
  */
-int max_x_map(Map);
+int max_x_map(Route);
 
 /**
  * @brief return the maximum y coordinate of a map
  *
- * @param map map full of cities
+ * @param route route full of cities
  * @return int maximum y coordinate
  */
-int max_y_map(Map);
+int max_y_map(Route);
 
 /**
- * @brief Evolves a list of maps by applying mutations and generating new random paths.
+ * @brief Execute one iteration of the genetic algorithm
  *
- * This function performs evolution on the provided map list through two steps:
- * 1. Mutates maps in the list (excluding the first and last MUTATION_SIZE elements)
- * 2. Generates completely new random paths for a portion of the list
- * 3. Sorts the resulting list based on map comparison criteria
- *
- * @param list Pointer to the MapList to evolve
- * @return 0 on success, -1 if the list is NULL or empty
+ * @param routes A collection of routes to evolve
+ * @param nb_mutation Number of routes to mutate
+ * @param nb_best Number of best routes to keep unchanged
+ * @param nb_random Number of random routes to generate
+ * @return int 0 if successful, -1 otherwise
  */
-int evolve_list_map(MapList *);
+int genetic_loop(RouteCollection *, int, int, int);
 
 /**
  * @brief To calculate the distance between two points
@@ -46,45 +44,45 @@ float calc_distance(int, int, int, int);
 /**
  * @brief To calculate the entire distance of a path
  *
- * @param map
+ * @param route
  * @return float
  */
-float calc_distance_array(Map);
+float calc_distance_array(Route);
 
 /**
- * @brief Take a populated map and return a shuffled map to create a path
+ * @brief Take a populated route and return a shuffled route to create a path
  *
- * @param size the size of the map
- * @return Map with a shuffled path trought all the cities
+ * @param size the size of the route
+ * @return Route with a shuffled path through all the cities
  */
-Map generate_random_path(Map, int);
+Route generate_random_path(Route, int);
 
 /**
  * @brief Function to swap two group of cities
  *
- * @param map the map where to swap the cities
+ * @param route the route where to swap the cities
  * @param first_group the first index of the first group
  * @param second_group the first index of the second group
  * @param size the size of the two groups
- * @return Map the map with the two groups swapped
+ * @return Route the route with the two groups swapped
  */
-Map swap_cities(Map, int, int, int);
+Route swap_cities(Route, int, int, int);
 
 /**
- * @brief Generate a mutation of the map
+ * @brief Generate a mutation of the route
  *
- * @param map the path to mutate from
- * @param size the size of the map
- * @return Map the mutated map
+ * @param route the path to mutate from
+ * @param size the size of the route
+ * @return Route the mutated route
  */
-Map mutate(Map, int);
+Route mutate(Route, int);
 
 /**
- * @brief To compare two maps
+ * @brief To compare two routes
  *
- * @param a the first map to compare
- * @param b the second map to compare
- * @return int 1 if a is longer than b, 0 otherwise, and -1 if they are not the same size
+ * @param a the first route to compare
+ * @param b the second route to compare
+ * @return int -1 if a is shorter than b, 1 if a is longer than b, and 0 if equal, -1 if they are different sizes
  */
 int map_comparison(const void *, const void *);
 

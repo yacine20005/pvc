@@ -6,59 +6,59 @@
 #define WINDOW_HEIGHT 800
 
 /**
- * @brief Displays the map with city names and coordinates in the console
+ * @brief Displays the route with city names and coordinates in the console
  *
- * @param map The map containing cities to display
+ * @param route The route containing cities to display
  */
-void print_map(Map map);
+void print_map(Route route);
 
 /**
- * @brief Displays the map inline with city names followed by the total distance
+ * @brief Displays the route inline with city names followed by the total distance
  *
- * @param map The map containing cities to display
+ * @param route The route containing cities to display
  */
-void print_map_inline(Map map);
+void print_map_inline(Route route);
 
 /**
- * @brief Displays a list of maps in the console
+ * @brief Displays a collection of routes in the console
  *
- * @param lst The list of maps to display
+ * @param collection The collection of routes to display
  */
-void print_list_map(MapList lst);
+void print_list_map(RouteCollection collection);
 
 /**
- * @brief Displays the cities of a map in an MLV window
+ * @brief Displays the cities of a route in an MLV window
  *
- * @param map The map containing cities to display
+ * @param route The route containing cities to display
  * @param x_offset Horizontal offset for display
  * @param y_offset Vertical offset for display
  */
-void MLV_print_cities(Map map, int x_offset, int y_offset);
+void MLV_print_cities(Route route, int x_offset, int y_offset);
 
 /**
- * @brief Draws the path between cities of a map in an MLV window
+ * @brief Draws the path between cities of a route in an MLV window
  *
- * @param map The map containing the path to draw
+ * @param route The route containing the path to draw
  * @param color The color of the path
  * @param x_offset Horizontal offset for display
  * @param y_offset Vertical offset for display
  */
-void MLV_print_path(Map map, MLV_Color color, int x_offset, int y_offset);
+void MLV_print_path(Route route, MLV_Color color, int x_offset, int y_offset);
 
 /**
- * @brief Displays a list of paths in an MLV window with different shades of red
+ * @brief Displays a collection of paths in an MLV window with different shades of red
  *
- * @param lst The list of maps containing paths to display
+ * @param collection The collection of routes containing paths to display
  * @param x_offset Horizontal offset for display
  * @param y_offset Vertical offset for display
  */
-void MLV_print_list_map(MapList lst, int x_offset, int y_offset);
+void MLV_print_list_map(RouteCollection collection, int x_offset, int y_offset);
 
 /**
  * @brief Displays the complete world with cities and paths in an MLV window
  *
- * @param lst The list of maps to display
+ * @param collection The collection of routes to display
  */
-void MLV_print_world(MapList lst);
+void MLV_print_world(RouteCollection collection);
 
 #endif // GRAPHICS_H

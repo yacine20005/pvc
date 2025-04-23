@@ -44,6 +44,8 @@ Créer un programme en C nommé pvc qui résout le problème du voyageur de comm
   - Gérer la convergence (critères d'arrêt).
 - [ ] Module de sauvegarde des résultats :
   - Sauvegarder la meilleure solution trouvée dans un fichier.
+- [ ] Module d'entrée utilisateur :
+  - Permettre à l'utilisateur de spécifier le fichier d'entrée et les paramètres de l'algorithme (nombre de générations, taille de la population, etc.).
 
 ### Tests et validation
 

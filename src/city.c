@@ -1,33 +1,36 @@
 #include "city.h"
-Map *init_map()
+#include <string.h>
+
+Route *init_map()
 {
-    Map *map = malloc(sizeof(Map));
-    if (map == NULL)
+    Route *route = (Route *)malloc(sizeof(Route));
+    if (route == NULL)
     {
-        perror("Error allocating memory for city list");
+        printf("Error: malloc failed\n");
         return NULL;
     }
-    map->size = 0;
-    return map;
+    route->size = 0;
+    return route;
 }
 
-MapList *init_map_list()
+RouteCollection *init_map_list()
 {
-    MapList *map_list = malloc(sizeof(MapList));
-    if (map_list == NULL)
+    RouteCollection *collection = (RouteCollection *)malloc(sizeof(RouteCollection));
+    if (collection == NULL)
     {
-        perror("Error allocating memory for city list");
+        printf("Error: malloc failed\n");
         return NULL;
     }
-    map_list->size = 0;
-    return map_list;
+    collection->size = 0;
+    return collection;
 }
 
-int add_map_to_list(MapList *map_list, Map map)
+int add_map_to_list(RouteCollection *collection, Route route)
 {
-    if (map_list->size >= CYCLE_SIZE)
+    if (collection == NULL || collection->size >= CYCLE_SIZE)
         return -1;
-    map_list->path[map_list->size] = map;
-    map_list->size++;
+
+    collection->paths[collection->size] = route;
+    collection->size++;
     return 0;
 }
