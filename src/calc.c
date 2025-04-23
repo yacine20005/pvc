@@ -27,9 +27,6 @@ int genetic_loop(RouteCollection *collection, int nb_mutation, int nb_best, int 
     if (collection == NULL || collection->size == 0)
         return -1;
 
-    // Trier dans l'ordre croissant selon la longueur des visites
-    qsort(collection->paths, collection->size, sizeof(Route), map_comparison);
-
     // Créer une nouvelle collection pour stocker les nouvelles visites
     RouteCollection new_collection;
     new_collection.size = collection->size;
