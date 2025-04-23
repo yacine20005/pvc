@@ -29,53 +29,87 @@ void print_list_map(RouteCollection lst)
     }
 }
 
-void MLV_print_cities(Route map, int x_offset, int y_offset)
+void get_min_max_coordinate(Route route, int *min_max)
 {
-    for (int i = 0; i < map.size; i++)
+    min_max[0] = route.cities[0].x;
+    min_max[1] = route.cities[0].y;
+    min_max[2] = route.cities[0].x;
+    min_max[3] = route.cities[0].y;
+
+    for (int i = 1; i < route.size; i++)
     {
-        MLV_draw_text(map.cities[i].x + x_offset, map.cities[i].y + y_offset - WINDOW_HEIGHT / 100, map.cities[i].name, MLV_COLOR_BLACK);
-        MLV_draw_filled_circle(map.cities[i].x + x_offset, map.cities[i].y + y_offset, 5, MLV_COLOR_RED);
+        if (route.cities[i].x < min_max[0])
+            min_max[0] = route.cities[i].x;
+
+        if (route.cities[i].y < min_max[1])
+            min_max[1] = route.cities[i].y;
+
+        if (route.cities[i].x > min_max[2])
+            min_max[2] = route.cities[i].x;
+
+        if (route.cities[i].y > min_max[3])
+            min_max[3] = route.cities[i].y;
     }
 }
 
-void MLV_print_path(Route map, MLV_Color color, int x_offset, int y_offset)
+
+int calculate_scale_x(int min_x, int max_x, int width)
+{
+    if (max_x - min_x == 0)
+        return 1;
+    return width / (max_x - min_x);
+}
+
+int calculate_scale_y(int min_y, int max_y, int height)
+{
+    if (max_y - min_y == 0)
+        return 1;
+    return height / (max_y - min_y);
+}
+
+void MLV_print_cities(Route map, int scale_x, int scale_y)
+{
+    for (int i = 0; i < map.size; i++)
+    {
+        MLV_draw_text(map.cities[i].x * scale_x, map.cities[i].y * scale_y - WINDOW_HEIGHT / 100, map.cities[i].name, MLV_COLOR_BLACK);
+        MLV_draw_filled_circle(map.cities[i].x * scale_x, map.cities[i].y * scale_y, 5, MLV_COLOR_RED);
+    }
+}
+
+void MLV_print_path(Route map, MLV_Color color, int scale_x, int scale_y)
 {
     for (int i = 0; i < map.size - 1; i++)
-        MLV_draw_line(map.cities[i].x + x_offset, map.cities[i].y + y_offset, map.cities[i + 1].x + x_offset, map.cities[i + 1].y + y_offset, color);
+        MLV_draw_line(map.cities[i].x * scale_x, map.cities[i].y * scale_y,
+                      map.cities[i + 1].x * scale_x, map.cities[i + 1].y * scale_y, color);
 }
 
-void MLV_print_list_map(RouteCollection lst, int x_offset, int y_offset)
+void MLV_print_list_map(RouteCollection lst, int scale_x, int scale_y)
 {
     for (int i = 0; i < lst.size; i++)
-        MLV_print_path(lst.paths[i], MLV_rgba(i * 255 / lst.size, 0, 0, 255), x_offset, y_offset);
+        MLV_print_path(lst.paths[i], MLV_rgba(i * 255 / lst.size, 0, 0, 255), scale_x, scale_y);
 }
-
 void MLV_print_world(RouteCollection lst)
 {
     if (lst.size <= 0)
         return;
-    int max_x = max_x_map(lst.paths[0]);
-    int max_y = max_y_map(lst.paths[0]);
-    int min_x = min_x_map(lst.paths[0]);
-    int min_y = min_y_map(lst.paths[0]);
-    if (max_x > WINDOW_WIDTH)
-        max_x = WINDOW_WIDTH;
-    if (max_y > WINDOW_HEIGHT)
-        max_y = WINDOW_HEIGHT;
-    if (min_x < 0)
-        min_x = 0;
-    if (min_y < 0)
-        min_y = 0;
-    int x_offset = (WINDOW_WIDTH - (max_x - min_x)) / 2;
-    int y_offset = (WINDOW_HEIGHT - (max_y - min_y)) / 2;
-    int scale_x = (WINDOW_WIDTH - 2 * x_offset) / (max_x - min_x);
-    int scale_y = (WINDOW_HEIGHT - 2 * y_offset) / (max_y - min_y);
-    int scale = scale_x < scale_y ? scale_x : scale_y;
-    x_offset += min_x * scale;
-    y_offset += min_y * scale;
+
+    int min_max[4];
+    get_min_max_coordinate(lst.paths[0], min_max);
+    int min_x = min_max[0];
+    int min_y = min_max[1];
+    int max_x = min_max[2];
+    int max_y = min_max[3];
+
+    // int x_offset = (WINDOW_WIDTH - (max_x - min_x)) / 2;
+    // int y_offset = (WINDOW_HEIGHT - (max_y - min_y)) / 2;
+    int x_offset = 0;
+    int y_offset = 0;
+
+    int scale_x = calculate_scale_x(min_x, max_x, WINDOW_WIDTH);
+    int scale_y = calculate_scale_y(min_y, max_y, WINDOW_HEIGHT);
 
     MLV_clear_window(MLV_COLOR_WHITE);
-    MLV_print_cities(lst.paths[0], x_offset, y_offset);
-    MLV_print_path(lst.paths[0], MLV_COLOR_BLUE, x_offset, y_offset);
+    MLV_print_cities(lst.paths[0], scale_x, scale_y);
+    MLV_print_path(lst.paths[0], MLV_COLOR_BLUE, scale_x, scale_y);
     MLV_actualise_window();
 }

@@ -1,8 +1,0 @@
-Paris 0 0
-Monaco 80 95
-Lille 20 30
-Reims 10 20
-Creuse 50 50
-Junk-Junction 44 55
-Tilted-Towers 33 44
-Los-Santos 100 100

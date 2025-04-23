@@ -1,44 +1,9 @@
 #include "calc.h"
+#include "route.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-
-int max_x_map(Route route)
-{
-    int max_x = route.cities[0].x;
-    for (int i = 1; i < route.size; i++)
-        if (route.cities[i].x > max_x)
-            max_x = route.cities[i].x;
-    return max_x;
-}
-
-int max_y_map(Route route)
-{
-    int max_y = route.cities[0].y;
-    for (int i = 1; i < route.size; i++)
-        if (route.cities[i].y > max_y)
-            max_y = route.cities[i].y;
-    return max_y;
-}
-
-int min_x_map(Route route)
-{
-    int min_x = route.cities[0].x;
-    for (int i = 1; i < route.size; i++)
-        if (route.cities[i].x < min_x)
-            min_x = route.cities[i].x;
-    return min_x;
-}
-
-int min_y_map(Route route)
-{
-    int min_y = route.cities[0].y;
-    for (int i = 1; i < route.size; i++)
-        if (route.cities[i].y < min_y)
-            min_y = route.cities[i].y;
-    return min_y;
-}
 
 int genetic_loop(RouteCollection *collection, int nb_mutation, int nb_best, int nb_random)
 {
@@ -151,3 +116,19 @@ Route generate_random_path(Route route, int size)
     return shuffled_route;
 }
 
+int create_initial_RouteCollection(RouteCollection *collection, Route *cities, int size)
+{
+    if (collection == NULL || cities == NULL || size <= 0)
+        return -1;
+    for (int i = 0; i < size; i++)
+    {    
+        printf("Creating initial RouteCollection: %d\n", i);
+        if(add_route_to_collection(collection, generate_random_path(*cities, cities->size)) == -1)
+        {
+            printf("Error: Creation of initial RouteCollection failed\n");
+            return -1;
+        }
+    }
+    qsort(collection->paths, collection->size, sizeof(Route), route_comparison);
+    return 0;
+}

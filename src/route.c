@@ -25,22 +25,5 @@ int add_route_to_collection(RouteCollection *collection, Route route)
     return 0;
 }
 
-int create_initial_RouteCollection(RouteCollection *collection, Route *cities, int size)
-{
-    if (collection == NULL || cities == NULL || size <= 0)
-        return -1;
-    for (int i = 0; i < size; i++)
-    {    
-        printf("Creating initial RouteCollection: %d\n", i);
-        if(add_route_to_collection(collection, generate_random_path(*cities, cities->size)) == -1)
-        {
-            printf("Error: Creation of initial RouteCollection failed\n");
-            return -1;
-        }
-    }
-    qsort(collection->paths, collection->size, sizeof(Route), route_comparison);
-    return 0;
-}
-
 
 
