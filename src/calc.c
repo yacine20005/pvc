@@ -1,6 +1,11 @@
 #include "calc.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
 
-int max_x_map(Map map){
+int max_x_map(Map map)
+{
     int max_x = map.cities[0].x;
     for (int i = 1; i < map.size; i++)
         if (map.cities[i].x > max_x)
@@ -8,7 +13,8 @@ int max_x_map(Map map){
     return max_x;
 }
 
-int max_y_map(Map map){
+int max_y_map(Map map)
+{
     int max_y = map.cities[0].y;
     for (int i = 1; i < map.size; i++)
         if (map.cities[i].y > max_y)
@@ -18,17 +24,51 @@ int max_y_map(Map map){
 
 int evolve_list_map(MapList *list)
 {
-    if(list == NULL || list->size == 0)
+    if (list == NULL || list->size == 0)
         return -1;
-    for (int i = MUTATION_SIZE; i < list->size - MUTATION_SIZE; i++)
-    {
-        list ->path[i] = mutate(list->path[i], list->size);
-    }
-    for(int i = 2* MUTATION_SIZE; i < list->size; i++)
-    {
-        list->path[i] = generate_random_path(list->path[0], list->path[0].size);
-    }
+
+    // Trier V dans l'ordre croissant selon la longueur des visites
     qsort(list->path, list->size, sizeof(Map), map_comparison);
+
+    // Créer une nouvelle liste V' pour stocker les nouvelles visites
+    MapList new_list;
+    new_list.size = list->size;
+
+    // Définir les paramètres alpha, beta et gamma
+    int alpha = MUTATION_SIZE;
+    int beta = MUTATION_SIZE;
+    int gamma = list->size - (alpha + beta);
+
+    // 1. Appliquer des mutations aux alpha meilleurs chemins
+    for (int i = 0; i < alpha; i++)
+    {
+        // Mutation des meilleurs chemins (v1, v2, ..., v_alpha)
+        new_list.path[i] = mutate(list->path[i % beta], list->path[0].size);
+    }
+
+    // 2. Conserver beta meilleurs chemins sans modification
+    for (int i = 0; i < beta; i++)
+    {
+        // Garder les meilleurs chemins (v1, v2, ..., v_beta)
+        new_list.path[alpha + i] = list->path[i];
+    }
+
+    // 3. Générer gamma chemins aléatoires
+    for (int i = 0; i < gamma; i++)
+    {
+        // Générer de nouvelles visites aléatoires
+        new_list.path[alpha + beta + i] = generate_random_path(list->path[0], list->path[0].size);
+    }
+
+    // Copier la nouvelle liste dans l'ancienne
+    for (int i = 0; i < list->size; i++)
+    {
+        list->path[i] = new_list.path[i];
+    }
+
+    // Trier à nouveau la liste selon la longueur des chemins
+    qsort(list->path, list->size, sizeof(Map), map_comparison);
+
     return 0;
 }
 
