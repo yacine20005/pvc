@@ -21,27 +21,27 @@ typedef struct
 {
     City cities[CITY_SIZE];
     int size;
-} Route; // Renommé de Map à Route pour mieux représenter un parcours
+} Route;
 
 typedef struct
 {
-    Route paths[CYCLE_SIZE]; // Renommé de path à paths et Map à Route
+    Route paths[CYCLE_SIZE];
     int size;
-} RouteCollection; // Renommé de MapList à RouteCollection pour plus de clarté
-
-/**
- * @brief Initialize the array of cities
- *
- * @return Route* The pointer to the array of cities
- */
-Route *init_map();
+} RouteCollection;
 
 /**
  * @brief Initialize the RouteCollection
  *
  * @return RouteCollection* The pointer to the RouteCollection
  */
-RouteCollection *init_map_list();
+Route *init_route();
+
+/**
+ * @brief Initialize the RouteCollection
+ *
+ * @return RouteCollection* The pointer to the RouteCollection
+ */
+RouteCollection *init_route_collection();
 
 /**
  * @brief Add a route to the collection of routes
@@ -50,7 +50,7 @@ RouteCollection *init_map_list();
  * @param route The route to add
  * @return int 0 if success, -1 if failure
  */
-int add_map_to_list(RouteCollection *, Route);
+int add_route_to_collection(RouteCollection *, Route);
 
 /**
  * @brief Create the initial RouteCollection with random routes

@@ -1,7 +1,7 @@
-#include "city.h"
+#include "route.h"
 #include <string.h>
 
-Route *init_map()
+Route *init_route()
 {
     Route *route = (Route *)malloc(sizeof(Route));
     if (route == NULL)
@@ -13,7 +13,7 @@ Route *init_map()
     return route;
 }
 
-RouteCollection *init_map_list()
+RouteCollection *init_route_collection()
 {
     RouteCollection *collection = (RouteCollection *)malloc(sizeof(RouteCollection));
     if (collection == NULL)
@@ -25,7 +25,7 @@ RouteCollection *init_map_list()
     return collection;
 }
 
-int add_map_to_list(RouteCollection *collection, Route route)
+int add_route_to_collection(RouteCollection *collection, Route route)
 {
     if (collection == NULL || collection->size >= CYCLE_SIZE)
         return -1;
