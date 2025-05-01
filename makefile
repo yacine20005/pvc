@@ -1,5 +1,5 @@
 # Programme et options de compilation
-PROG = pvc
+PROG = tsp
 CC = gcc
 CFLAGS = -Wall -g -Iinc
 LDFLAGS = -lMLV -lm
